@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+</head>
+<style>
+    body {
+        font-family:"Lucida Grande","Droid Sans",Arial,Helvetica,sans-serif;
+    }
+
+    .bld {
+        font-weight: bold;
+    }
+
+    #cloudPlot svg .carTag {
+    	cursor: pointer;
+    }
+
+
+    #linePlot .axis--x path {
+      display: none;
+    }
+
+    #linePlot g.car path {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+
+    #linePlot g path {
+      stroke: #a2c0d9;
+      stroke-width: 1px;
+    }
+
+    #linePlot path {
+      stroke: #fff;
+    }
+
+    #linePlot .line:hover {
+    				stroke: rgb(300, 0, 0);
+    				stroke-width: 5px;
+    			}
+
+    #linePlot .circlePart:hover {
+    				fill: rgb(300, 0, 0);
+    			}
+
+    #linePlot #Cars {
+    	fill: #f0f8ff;
+    	stroke: #f0f8ff;
+    }
+
+
+</style>
+<body>
+	<div id="tagCloudControle">
+		<button onclick="returnProducers()">Повернутися</button>
+		<div id="carProducerReturnTag"></div>
+	</div>
+    <div id="cloudPlot"></div>
+    <div id="the-basics">
+    	<input class="typeahead" type="text" placeholder="States of USA">
+    	<button type="button" id="button">Click</button>
+    	<button onclick="emptyLineChart()">Empty Line Chart</button> 
+    	<button onclick="deletePreviousLine()">Delete Previous Line</button> 
+    </div>
+    <div id="linePlot"></div>
+
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<script src="d3.layout.cloud.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="cloud_plot.js"></script>
+<script src="line_plot.js"></script>
+</body>
+</html>
