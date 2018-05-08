@@ -32,7 +32,7 @@ height = 600;
 
 
     function buildCloudPlot(grouped_cars) { 
-      var carTop = d3.scaleLinear().range([5, 50]);
+      var carTop = d3.scaleLinear().range([25, 75]);
       
         carTop.domain([
           d3.min(grouped_cars, function(d) {return d.size;}),
@@ -43,7 +43,7 @@ height = 600;
         .size([width, height])
         .words(grouped_cars)
         .padding(1)
-        .rotate(0)
+        .rotate(function() { return ~~(Math.random() * 5) * -30 + 30; })
         .text(function(d) { return d.producer; })
         .font("Impact")
         .fontSize(function(d) { return carTop(d.size); })
@@ -95,7 +95,7 @@ height = 600;
           newCars = d.models;
       })
 
-      var carTop = d3.scaleLinear().range([25, 60]);
+      var carTop = d3.scaleLinear().range([25, 75]);
     
         carTop.domain([
           d3.min(newCars, function(d) {return d.size;}),
@@ -106,7 +106,7 @@ height = 600;
         .size([width, height])
         .words(newCars)
         .padding(1)
-        .rotate(0)
+        .rotate(function() { return ~~(Math.random() * 5) * -30 + 30; })
         .text(function(d) { return d.model; })
         .font("Impact")
         .fontSize(function(d) { return carTop(d.size); })
