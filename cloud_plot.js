@@ -1,11 +1,11 @@
 var fill = d3.scaleOrdinal(d3.schemeCategory10); 
 
-width = 900;
+width = 850;
 height = 550;
 
 
 
- d3.csv("data.csv", function (cars) {
+ d3.csv("data_cloud_plot.csv", function (cars) {
   cars.forEach(function(d) { 
       d.size = +d.size;
   });
@@ -17,7 +17,6 @@ height = 550;
   })
 
   
-  //
 
   var grouped_cars = d3.nest()
       .key(function(d) {return d.producer})
@@ -50,8 +49,8 @@ height = 550;
         var layout = d3.layout.cloud()
         .size([width, height])
         .words(grouped_cars)
-        .padding(3)
-        .rotate(function() { return ~~((Math.random() * 6) - 2) * 30; })
+        .padding(5)
+        .rotate(0)
         .text(function(d) { return d.producer; })
         .font("Open Sans")
         .fontSize(function(d) {return carTop(d.size); })
@@ -103,7 +102,13 @@ height = 550;
           newCars = d.models;
       })
 
-      var carTop = d3.scaleLinear().range([10, 70]);
+      // var newCarsFiltered10 = [];
+      // newCars.forEach(function(d) {
+      //   if (d.size > 25) 
+      //     newCarsFiltered10.push(d);
+      // })
+
+      var carTop = d3.scaleLinear().range([15, 45]);
     
         carTop.domain([
           d3.min(newCars, function(d) {return d.size;}),
@@ -145,7 +150,8 @@ height = 550;
         }
 
         d3.selectAll(".modelTag").on("click", function(d) {
-          addCar(d.producer + " " + d.model);
+          console.log(d.brand.replace(/\s+/g,' ').trim().toUpperCase())
+          addCar(d.brand.replace(/\s+/g,' ').trim().toUpperCase());
         });
 
         d3.select("#carProducerReturnTag").text(name);

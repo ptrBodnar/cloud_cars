@@ -23,7 +23,7 @@ var x = d3.scaleTime().range([0, width]),
 
 //debugger;
 
-d3.csv("data_wide1.csv", type, function(error, data) {
+d3.csv("data_wide_line_plot.csv", type, function(error, data) {
   if (error) throw error;
 
     window.cars = data.columns.slice(1).map(function(id) {
