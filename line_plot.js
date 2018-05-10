@@ -7,8 +7,8 @@ var currentCars = [];
 
 var svg = d3.select("#linePlot")
             .append("svg")
-            .attr("width", "900")
-            .attr("height", "600")
+            .attr("width", "450")
+            .attr("height", "300")
 
 
 var margin = {top: 20, right: 80, bottom: 30, left: 50},
@@ -55,10 +55,10 @@ d3.csv("data_wide1.csv", type, function(error, data) {
     var z = d3.scaleOrdinal(d3.schemeCategory1).domain(cars.map(function(c) { return c.id; }));
 
     // Шкала Х
-    g.append("g")
-        .attr("class", "axis x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+    // g.append("g")
+    //     .attr("class", "axis x")
+    //     .attr("transform", "translate(0," + height + ")")
+    //     .call(d3.axisBottom(x));
 
     //Шкала У    
     g.append("g")

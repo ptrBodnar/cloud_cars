@@ -1,7 +1,7 @@
 var fill = d3.scaleOrdinal(d3.schemeCategory10); 
 
 width = 900;
-height = 600;
+height = 550;
 
 
 
@@ -12,7 +12,7 @@ height = 600;
 
   carsFiltered100 = [];
   cars.forEach(function(d) {
-    if (d.size > 1000) 
+    if (d.size > 10) 
       carsFiltered100.push(d);
   })
 
@@ -40,7 +40,7 @@ height = 600;
 
 
     function buildCloudPlot(grouped_cars) { 
-      var carTop = d3.scaleLinear().range([15, 90]);
+      var carTop = d3.scaleLinear().range([15, 75]);
       
         carTop.domain([
           d3.min(grouped_cars, function(d) {return d.size;}),
@@ -103,7 +103,7 @@ height = 600;
           newCars = d.models;
       })
 
-      var carTop = d3.scaleLinear().range([10, 75]);
+      var carTop = d3.scaleLinear().range([10, 70]);
     
         carTop.domain([
           d3.min(newCars, function(d) {return d.size;}),

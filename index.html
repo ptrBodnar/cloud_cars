@@ -58,6 +58,7 @@
 
     #carProducerReturnTag {
         margin-left: 10px;
+        margin-right: 10px;
     }
 
     .typeahead {
@@ -116,37 +117,35 @@
 <body>
 <h1 align="center">Нові автомобілі в Україні</h1>
 
-<div class="container.fluid">
-    <div class="container.fluid">
-        <div class="form-inline">
-            <button onclick="returnProducers()">Повернутися</button> 
-            <div id="carProducerReturnTag"></div>
-        </div>
-    </div>
-
-    <div class="container.fluid">
-      <div class="row">
-        <div class="col-10">
-          <div id="cloudPlot"></div>
-        </div>
-      <div class="col-2"> 
-        <p>Інтерактивна візуалізація відображає структуру ринку нових легкових автомобілів в Україні. Чим більший шрифт, тим більше було продано автомобілів цієї марки. Якщо натиснути на назву виробника візуалізуються його моделі.</p>
-        <p>На графіку нижче, можна побачити як змінюється кількість зареєстрованих автомобілів певної моделі помісячно і порівняти її з іншими моделями.</p>
-      </div>
-      </div>
-    </div>
 
     <div class="container.fluid">
       <div class="row">
         <div class="col-8">
-          <button onclick="emptyLineChart()">Очистити графік</button> 
-          <button onclick="deletePreviousLine()">Видалити попередню лінію</button> 
-          <div id="linePlot"></div>
+          <div class="form-inline">
+            <button onclick="returnProducers()">Повернутися</button> 
+            <div id="carProducerReturnTag"></div>
+            <!-- <button onclick="deletePreviousLine()">Видалити попередню</button> -->  
         </div>
-      <div id="the-basics">
+          <div id="cloudPlot"></div>
+        </div>
+      <div class="col-4"> 
+        <button onclick="emptyLineChart()">Очистити графік</button>
+        <div id="linePlot"></div>
+        <p>gddhdh
+        dgdgdg
+        dgdg</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+        <p>gdgdgd fdgdg dgdgd dgdgdgd</p>
+
+        <!-- <div id="the-basics">
                 <input class="typeahead" type="text" placeholder="Назва моделі">
                 <button type="button" id="button">Шукати</button>
-        </div>
+        </div> -->
+      </div>
       </div>
     </div>
 </div>
