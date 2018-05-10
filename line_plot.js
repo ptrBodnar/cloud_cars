@@ -157,11 +157,12 @@ d3.csv("data_wide_line_plot.csv", type, function(error, data) {
 
 
       d3.selectAll(".line").on("click", function(dd) {
-        const index = currentCars.indexOf(dd.id);
+        const index = currentCars.indexOf(dd.id.replace(/\s+/g,' '));
         currentCars.splice(index, 1);
         console.log(currentCars); 
         addCar();
       });
+
 
     }
 
