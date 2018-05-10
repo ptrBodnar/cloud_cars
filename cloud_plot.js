@@ -10,7 +10,7 @@ height = 550;
       d.size = +d.size;
   });
 
-  carsFiltered100 = [];
+  var carsFiltered100 = [];
   cars.forEach(function(d) {
     if (d.size > 10) 
       carsFiltered100.push(d);
@@ -122,7 +122,7 @@ height = 550;
         .rotate(0)
         .text(function(d) { return d.model; })
         .font("Open Sans")
-        .fontSize(function(d) { return carTop(d.size); })
+        .fontSize(function(d) {if (newCars.length < 2) {return 45} else {return carTop(d.size);} })
         .on("end", reDrawCloud);
       
         layout.start();

@@ -28,7 +28,7 @@ d3.csv("data_wide_line_plot.csv", type, function(error, data) {
 
     window.cars = data.columns.slice(1).map(function(id) {
     return {
-      id: id,
+      id: id.replace(/\s+/g,' '),
       values: data.map(function(d) {
         return {date: d.date, number: d[id]};
         })
