@@ -10,11 +10,18 @@ height = 600;
       d.size = +d.size;
   });
 
+  carsFiltered100 = [];
+  cars.forEach(function(d) {
+    if (d.size > 1000) 
+      carsFiltered100.push(d);
+  })
+
+  
   //
 
   var grouped_cars = d3.nest()
       .key(function(d) {return d.producer})
-      .entries(cars)
+      .entries(carsFiltered100)
 
 
   grouped_cars.forEach(function(obj) {
@@ -106,7 +113,7 @@ height = 600;
         var layout = d3.layout.cloud()
         .size([width, height])
         .words(newCars)
-        .padding(2)
+        .padding(5)
         .rotate(0)
         .text(function(d) { return d.model; })
         .font("Open Sans")
