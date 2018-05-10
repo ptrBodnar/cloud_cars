@@ -8,7 +8,7 @@ var currentCars = [];
 var svg = d3.select("#linePlot")
             .append("svg")
             .attr("width", "900")
-            .attr("height", "500")
+            .attr("height", "600")
 
 
 var margin = {top: 20, right: 80, bottom: 30, left: 50},
@@ -157,8 +157,9 @@ d3.csv("data_wide.csv", type, function(error, data) {
 
 
       d3.selectAll(".line").on("click", function(dd) {
-        alert(dd.id)
-        currentCars.splice( currentCars.indexOf(dd.id), 1 ); 
+        const index = currentCars.indexOf(dd.id);
+        currentCars.splice(index, 1);
+        console.log(currentCars); 
         addCar();
       });
 

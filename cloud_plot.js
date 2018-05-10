@@ -1,6 +1,6 @@
 var fill = d3.scaleOrdinal(d3.schemeCategory10); 
 
-width = 1300;
+width = 900;
 height = 600;
 
 
@@ -25,6 +25,7 @@ height = 600;
     delete obj.values;
 
     obj.size = d3.sum(obj.models, function(d) {return d.size});
+
   });
 
 
@@ -32,7 +33,7 @@ height = 600;
 
 
     function buildCloudPlot(grouped_cars) { 
-      var carTop = d3.scaleLinear().range([25, 75]);
+      var carTop = d3.scaleLinear().range([15, 90]);
       
         carTop.domain([
           d3.min(grouped_cars, function(d) {return d.size;}),
@@ -42,11 +43,11 @@ height = 600;
         var layout = d3.layout.cloud()
         .size([width, height])
         .words(grouped_cars)
-        .padding(1)
-        .rotate(function() { return (~~(Math.random() * 6) - 3) * 30; })
+        .padding(3)
+        .rotate(function() { return ~~((Math.random() * 6) - 2) * 30; })
         .text(function(d) { return d.producer; })
-        .font("Impact")
-        .fontSize(function(d) { return carTop(d.size); })
+        .font("Open Sans")
+        .fontSize(function(d) {return carTop(d.size); })
         .on("end", drawCloud);
       
         layout.start();
@@ -62,7 +63,7 @@ height = 600;
             .data(words)
             .enter().append("text")
             .style("font-size", function(d) { return d.size + "px"; })
-            .style("font-family", "Impact")
+            .style("font-family", "Open Sans")
             .style("fill", function(d,i) {  return fill(i);})
             .style("opacity", 1)
             .attr("text-anchor", "middle")
@@ -77,7 +78,7 @@ height = 600;
           updateChart(name);
         });
 
-        d3.select("#carProducerReturnTag").text("Список Виробників Автомобілів"); 
+        d3.select("#carProducerReturnTag").text(""); 
 
       }
    }
@@ -95,7 +96,7 @@ height = 600;
           newCars = d.models;
       })
 
-      var carTop = d3.scaleLinear().range([25, 75]);
+      var carTop = d3.scaleLinear().range([10, 75]);
     
         carTop.domain([
           d3.min(newCars, function(d) {return d.size;}),
@@ -105,10 +106,10 @@ height = 600;
         var layout = d3.layout.cloud()
         .size([width, height])
         .words(newCars)
-        .padding(1)
-        .rotate(function() { return (~~(Math.random() * 6) - 3) * 30; })
+        .padding(4)
+        .rotate(function() { return ~~((Math.random() * 6) - 2) * 30; })
         .text(function(d) { return d.model; })
-        .font("Impact")
+        .font("Open Sans")
         .fontSize(function(d) { return carTop(d.size); })
         .on("end", reDrawCloud);
       
@@ -124,7 +125,7 @@ height = 600;
               .data(words)
             .enter().append("text")
               .style("font-size", function(d) { return d.size + "px"; })
-              .style("font-family", "Impact")
+              .style("font-family", "Open Sans")
               .style("fill", function(d,i) {  return fill(i);})
               .attr("text-anchor", "middle")
               .attr("class", "modelTag")
@@ -154,7 +155,7 @@ height = 600;
      .remove() 
      buildCloudPlot(grouped_cars);
 
-     d3.select("#carProducerReturnTag").text("Список Виробників Автомобілів"); 
+     //d3.select("#carProducerReturnTag").text("Список Виробників Автомобілів"); 
      
     };
 
