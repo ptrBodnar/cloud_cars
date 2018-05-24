@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -56,90 +56,262 @@
     	stroke: #f0f8ff;
     }
 
+    #bigLinePlot .fuel_line:hover {
+                    stroke: #FAA61A;
+                    stroke-width: 6px;
+                }
+
+    #bigLinePlot .axis--x path {
+      display: none;
+    }
+
+    #bigLinePlot g.car path {
+      fill: none;
+      stroke: #008D9E;
+      stroke-width: 3px;
+    }
+
+    #bigLinePlot g path {
+      stroke: white;
+      stroke-width: 1px;
+    }
+
+    #bigLinePlot path {
+      stroke: #fff;
+    }
+
+    #bigLinePlot .line:hover {
+                    stroke: #FAA61A;
+                    stroke-width: 6px;
+                }
+
+    #bigLinePlot .circlePart:hover {
+                    fill: rgb(300, 0, 0);
+                }
+
+    #bigLinePlot #Cars {
+        fill: #f0f8ff;
+        stroke: #f0f8ff;
+    }
+
     #carProducerReturnTag {
         margin-left: 10px;
         margin-right: 10px;
     }
 
-    .typeahead {
-       max-height: 150px;
-       overflow-y: auto;
-     }
-
-     h1 {
-        font-weight: bold;
-     }
-
-     button {
-        display: inline-block;
-       margin: 0;
-       padding: 0.75rem 1rem;
-        border: 0;
-        border-radius: 0.317rem;
-        background-color: #008D9E;
-        color: #fff;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem;
-       line-height: .5;
-        font-family: Open Sans, sans-serif;
-        cursor: pointer;
-        -webkit-appearance: none;
-        -webkit-font-smoothing: antialiased;
-     }
-
-     button:hover {
-        opacity: 0.85;
-     }
-
-     button:active {
-        box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
-     }
-
-     button:focus {
-        outline: thin dotted #444;
-        outline: 5px auto -webkit-focus-ring-color;
-        outline-offset: -2px;
-     }
-
-
-     .row {
-      padding-right: 50px;
-      padding-left: : 50px;
+    span.twitter-typeahead .tt-menu,
+    span.twitter-typeahead .tt-dropdown-menu {
+      cursor: pointer;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      float: left;
+      min-width: 160px;
+      padding: 5px 0;
+      margin: 2px 0 0;
+      list-style: none;
+      font-size: 14px;
+      text-align: left;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      background-clip: padding-box;
+    }
+    span.twitter-typeahead .tt-suggestion {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857143;
+      color: #333333;
+      white-space: nowrap;
+    }
+    span.twitter-typeahead .tt-suggestion.tt-cursor,
+    span.twitter-typeahead .tt-suggestion:hover,
+    span.twitter-typeahead .tt-suggestion:focus {
+      color: #ffffff;
+      text-decoration: none;
+      outline: 0;
+      background-color: #337ab7;
+    }
+    .input-group.input-group-lg span.twitter-typeahead .form-control {
+      height: 46px;
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.3333333;
+      border-radius: 6px;
+    }
+    .input-group.input-group-sm span.twitter-typeahead .form-control {
+      height: 30px;
+      padding: 5px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+    span.twitter-typeahead {
+      width: 100%;
+    }
+    .input-group span.twitter-typeahead {
+      display: block !important;
+      height: 34px;
+    }
+    .input-group span.twitter-typeahead .tt-menu,
+    .input-group span.twitter-typeahead .tt-dropdown-menu {
+      top: 32px !important;
+    }
+    .input-group span.twitter-typeahead:not(:first-child):not(:last-child) .form-control {
+      border-radius: 0;
+    }
+    .input-group span.twitter-typeahead:first-child .form-control {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .input-group span.twitter-typeahead:last-child .form-control {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    .input-group.input-group-sm span.twitter-typeahead {
+      height: 30px;
+    }
+    .input-group.input-group-sm span.twitter-typeahead .tt-menu,
+    .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
+      top: 30px !important;
+    }
+    .input-group.input-group-lg span.twitter-typeahead {
+      height: 46px;
+    }
+    .input-group.input-group-lg span.twitter-typeahead .tt-menu,
+    .input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
+      top: 46px !important;
     }
 
+.typeahead,
+.tt-query,
+.tt-hint {
+  width: 396px;
+  height: 30px;
+  padding: 8px 12px;
+  font-size: 24px;
+  line-height: 30px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  outline: none;
+}
 
+.typeahead {
+  background-color: #fff;
+}
 
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
 
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {
+  width: 422px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+#inds{
+    position:absolute;
+    top:10px;
+    left:10px;
+}
 
 
 </style>
 <body>
 <h1 align="center">Нові автомобілі в Україні</h1>
-
-
     <div class="container.fluid">
+        <div class="row">
+        <select id="inds">
+                <option value="data/fuel_line_plot.csv" selected="selected">apples</option>
+                <option value="data/oblast_name_line_plot.csv">pears</option>
+                <option value="data/kind_line_plot.csv">tomatoes</option>
+        </select>    
+        <div id="bigLinePlot"></div>
+        <div id="typeaheadBigLine">
+            <div id="the-basics">
+                    <input class="typeahead" type="text" placeholder="Назва моделі">
+                    <button type="button" id="button">Шукати</button>
+            </div>
+        </div>
+    </div>
+    </div>
       <div class="row">
         <div class="col-8">
           <div class="form-inline">
             <button onclick="returnProducers()">Повернутися</button> 
             <div id="carProducerReturnTag"></div>
-            <!-- <button onclick="deletePreviousLine()">Видалити попередню</button> -->  
         </div>
           <div id="cloudPlot"></div>
         </div>
       <div class="col-4"> 
         <button onclick="emptyLineChart()">Очистити графік</button>
-        <div id="linePlot"></div>
-        <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
         <!-- <div id="the-basics">
                 <input class="typeahead" type="text" placeholder="Назва моделі">
                 <button type="button" id="button">Шукати</button>
         </div> -->
+        <div id="linePlot"></div>
+        <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
       </div>
       </div>
-    </div>
-</div>
+      
+
+
+
 
 
 <script src="https://d3js.org/d3.v4.js"></script>
@@ -148,9 +320,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-<script src="d3.layout.cloud.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script src="cloud_plot.js"></script>
-<script src="line_plot.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/general.js"></script>
+<script src="js/cloud_plot.js"></script>
+<!-- <script src="js/line_plot.js"></script>
+ --><script src="js/fuel_line_plot.js"></script>
 </body>
 </html>
