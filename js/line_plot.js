@@ -18,8 +18,7 @@ var margin = {top: 20, right: 80, bottom: 30, left: 50},
 
 
 var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory1);
+    y = d3.scaleLinear().range([height, 0]);
 
 
 d3.csv("data/data_wide_line_plot.csv", type, function(error, data) {
@@ -94,12 +93,13 @@ d3.csv("data/data_wide_line_plot.csv", type, function(error, data) {
         .text(function(d) { return d.id });
 
 
-    d3.select("#button").on("click", function(d) {
+    d3.select("#buttonSmall").on("click", function(d) {
+      debugger;
 
       //you are changing the global value here on change event.      
-      var name = document.querySelectorAll("#the-basics input")[1].value.replace(/\s+/g,' ').trim().toUpperCase();
+      var name = document.querySelectorAll("#smallLine input")[1].value.replace(/\s+/g,' ').trim().toUpperCase();
 
-      document.querySelectorAll("#the-basics input")[1].value = "";
+      document.querySelectorAll("#smallLine input")[1].value = "";
       addCar(name);
     });
 
@@ -173,7 +173,6 @@ d3.csv("data/data_wide_line_plot.csv", type, function(error, data) {
     window.deletePreviousLine = function() {
       currentCars.pop();
       addCar();
-      console.log(currentCars);
     }
 
 
@@ -203,7 +202,7 @@ d3.csv("data/data_wide_line_plot.csv", type, function(error, data) {
     var namesOfCarModels = [];
     data.columns.slice(1).map(function(id) {return namesOfCarModels.push(id)});
 
-    $('#the-basics .typeahead').typeahead({
+    $('#smallLine .typeahead').typeahead({
       hint: true,
       highlight: true,
       minLength: 1

@@ -124,7 +124,7 @@
         d3.select("#carProducerReturnTag").text(name);
 
 
-///// ТУТ Я Закінчив, треба допилити, що були бари
+//Tooltip
           d3.selectAll(".modelTag")
               .on("mouseover", function(d) {
                      div.transition()
@@ -135,7 +135,6 @@
                       colorList.push(d.color + ": " + d.size + "<br/>")
                     })
                     colorList = colorList.join("");
-                     //div.html(d.values[0].color + ": " + d.values[0].size + "<br/>" + d.values[1].color + ": " +  d.values[1].size + "<br/>" + d.values[2].color + ": " +  d.values[2].size  + "<br/>" + d.values[3].color + ": " +  d.values[3].size)
                        div.html(colorList)
                        .style("left", (d3.event.pageX + 30) + "px")
                        .style("top", (d3.event.pageY - 28) + "px");
