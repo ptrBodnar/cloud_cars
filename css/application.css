@@ -1,6 +1,7 @@
 
 body {
     font-family:Open Sans,sans-serif;
+    font-size: 14px;
 }
 
 .bld {
@@ -325,7 +326,16 @@ span.twitter-typeahead {
     color: rgb(0, 141, 158);
     font-weight: 600;
     text-transform: uppercase;
+    cursor: pointer;
+}
 
+.navigation.noborders {
+    border: none;
+}
+
+.navigation:hover {
+    color: white;
+    background-color: #008D9E;
 }
 
 #inds{
@@ -335,12 +345,30 @@ span.twitter-typeahead {
     background-image: url('../image/arrow.png');     /* remove default arrow */
     background-repeat: no-repeat;
     background-position-x: 100%;
-    width: 48%;
+    background-size: contain;
+    width: 12em;
 }
 
 
 #deleteBigLinePlot {
-    width: 48%;
+    width: 11em;
+}
+
+#helpButton {
+    width: 4em;
+}
+
+#exportButton {
+    color: transparent;
+    background-image: url('../image/export_button.svg');
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 59%;
+    background-size: 100%;
+}
+
+#exportButton:hover {
+    background-color: transparent;
 }
 
 #wrapper {
@@ -351,7 +379,8 @@ span.twitter-typeahead {
 }
 
 h3 {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 20px;
     text-transform: uppercase;
+    font-size: 2em;
 }

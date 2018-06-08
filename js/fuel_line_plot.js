@@ -73,7 +73,7 @@ function plotting(path) {
         .attr("width", "100%");
 
     var container_width = svg.node().getBoundingClientRect().width;
-    var container_height = container_width * 0.75; // співвідношення сторін
+    var container_height = container_width * 0.7; // співвідношення сторін
 
     svg.attr("height", container_height + 'px');
 
