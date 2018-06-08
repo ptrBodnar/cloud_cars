@@ -1,6 +1,9 @@
 var sect = document.getElementById("inds");
 var path = sect.options[sect.selectedIndex].value;
 
+var carsOnClick = 0;
+
+
 window.namesOfFuel = [];
 
 plotting(path);
@@ -50,8 +53,8 @@ function plotting(path) {
 
 		var svg = d3.select("#bigLinePlot")
 		            .append("svg")
-		            .attr("width", "900")
-		            .attr("height", "580")
+		            .attr("width", "800")
+		            .attr("height", "460")
 
 
 		var margin = {top: 20, right: 80, bottom: 30, left: 50},
@@ -89,13 +92,32 @@ function plotting(path) {
           };
         });
 
+        window.downloadData = function(d) {
+              if (carsOnClick == 0)
+              {
+                var csvContent=fuel; //here we load our csv data 
+                var blob = new Blob([csvContent],{
+                    type: "text/csv;charset=utf-8;"
+                });
+
+                navigator.msSaveBlob(blob, "data.csv")
+              }
+              else {
+                 var csvContent=carsOnClick; //here we load our csv data 
+                 var blob = new Blob([csvContent],{
+                     type: "text/csv;charset=utf-8;"
+                 });
+
+                 navigator.msSaveBlob(blob, "data.csv")
+              }
+            };
+
 
         //Тут я створив змінну яка контролюватиме кількість елементів на графіку, відніматиме і додаватиме
         var fuelFiltered = [];
         fuel.forEach(function(d) {
             fuelFiltered.push(d.id);
         });
-
 
 
         //Довжина шкали Х
@@ -194,7 +216,6 @@ function plotting(path) {
             .text(function(d) { return d.id; });
 
           legend.on("click", function(d) {
-          debugger;
             if (this.style.opacity == 1) {
               var to_remove = document.getElementById(d.id).id;
               remakeLine(to_remove, null);
@@ -209,13 +230,30 @@ function plotting(path) {
           })
 
           legend.on("mouseover", function(d) {
-            debugger;
             d3.selectAll(".fuel_line")._groups[0].forEach(function(d) {d.style.opacity = 0.1})
             document.getElementById(d.id).style.opacity = 1;
           })
           .on("mouseout", function(d) {
             d3.selectAll(".fuel_line")._groups[0].forEach(function(d) {d.style.opacity = 0.5}) 
           })
+
+          d3.selectAll(".fuel_line").on("mouseover", function(d) {
+                     div.transition()
+                       .duration(200)
+                       .style("opacity", 1);
+                      
+                    var colorList = [];
+                       div.html(d.id)
+                       .style("left", (d3.event.pageX + 30) + "px")
+                       .style("top", (d3.event.pageY - 28) + "px")
+                       .style("background-color", "grey")
+                       .style("color", "white");
+                     })
+                   .on("mouseout", function(d) {
+                     div.transition()
+                       .duration(500)
+                       .style("opacity", 0);
+                     });
 
           d3.select("#deleteBigLinePlot").on("click", function(){
             remakeLine(null, null);
@@ -248,7 +286,7 @@ function plotting(path) {
         // });
 
             window.remakeLine = function(to_remove, to_add) {
-            var carsOnClick = 0;
+            
 
             if (to_add == null) 
                 {
@@ -265,6 +303,8 @@ function plotting(path) {
 
             carsOnClick = fuel.filter(function (d) {return fuelFiltered.indexOf(d.id.replace(/\s+/g,' ')) > -1; })
 
+            
+
               y.domain([
                 0,
                 d3.max(carsOnClick, function(c) { return d3.max(c.values, function(d) { return d.number; }); })
@@ -276,7 +316,6 @@ function plotting(path) {
                   .call(d3.axisBottom(x));
                   
               //Update Y axis
-              debugger;
               svg.select(".axis.y")
                   .transition()
                   .duration(1000)
@@ -295,9 +334,7 @@ function plotting(path) {
                   .attr("class", "fuel_line")
                   .style("opacity", .5)
                   .attr("id", function(d) { return d.id })
-                  .style("z-index", "0.5")
-                  .append("title")
-                    .text(function(d) { return d.id });
+                  .style("z-index", "0.5");
               
               carsEnter.merge(carsUpd)
                   .selectAll("path")
@@ -374,3 +411,4 @@ function substringMatcher(strs) {
 function emptyArray(arr) {
 	arr.splice(0, arr.length);
 }
+

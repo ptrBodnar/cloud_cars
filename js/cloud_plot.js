@@ -137,7 +137,9 @@
                     colorList = colorList.join("");
                        div.html(colorList)
                        .style("left", (d3.event.pageX + 30) + "px")
-                       .style("top", (d3.event.pageY - 28) + "px");
+                       .style("top", (d3.event.pageY - 28) + "px")
+                       .style("background-color", "grey")
+                       .style("color", "white");
                      })
                    .on("mouseout", function(d) {
                      div.transition()

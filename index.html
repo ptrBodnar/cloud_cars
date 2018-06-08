@@ -264,17 +264,6 @@
   margin: 0;
 }
 
-#inds{
-    position:absolute;
-    top:10px;
-    right:250px;
-}
-
-#deleteBigLinePlot{
-    position:absolute;
-    top:12px;
-    right:80px;
-}
 
 
 #myDiv{
@@ -308,8 +297,6 @@
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: black;
-    color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
@@ -319,26 +306,87 @@
     z-index: 1;
 }
 
+.navigation {
+  border-radius: 12px;
+  border: 2px solid rgb(0, 141, 158);
+  background-color: white;
+  color: rgb(0, 141, 158);
+  font: bolder;
+
+}
+
+#inds{
+    position:absolute;
+    top:12px;
+    right:250px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../../image/arrow.png');     /* remove default arrow */
+}
+
+
+#deleteBigLinePlot {
+    position:absolute;
+    top:12px;
+    right:80px;
+    margin-bottom: 200px;
+}
+
+#wrapper {
+   margin-left: 100px;
+   margin-right: 100px;
+   margin-top: 100px;
+   marker-bottom: 100px;
+}
+
+h3 {
+  margin-left: 75px;
+  margin-top: 50px;
+}
+
+
 </style>
 <body>
-<h1 align="center">Перша реєстрація автомобілів</h1>
-    <div><select id="inds" onchange="change(this.value)">
-            <option value="data/fuel_line_plot.csv" selected="selected">Пальне</option>
+<div class="row">
+  <h3 align="left">Які авто реєструють в Україні?</h3>
+</div>
+<div class="row">
+  <div class="col-sm-7">
+    <div id="bigLinePlot"></div>
+  </div>
+  <div class="col-sm-5">
+    <div class="row">
+    <select id="inds" class="navigation" onchange="change(this.value)">
+            <option value="data/fuel_line_plot.csv" selected="selected">Види пального</option>
             <option value="data/oblast_name_line_plot.csv">Регіони</option>
-            <option value="data/kind_line_plot.csv">Види транспортних засобів</option>
+            <option value="data/kind_line_plot.csv">Типи автомобілів</option>
             <option value="data/make_year_line_plot.csv">Рік виробництва</option>
-<!--             <option value="data/oblast_name_brand_line_plot_long.csv">Oblast Brand</option>
- -->    </select>  </div>
-    <button id='deleteBigLinePlot'>Видалити усі лінії</button> 
+            <!-- <option value="data/oblast_name_brand_line_plot_long.csv">Oblast Brand</option> -->
+    </select>  
+    <button id='deleteBigLinePlot' class="navigation">Очистити графік</button> 
+    </div>
+    <div class="row">
+      <div id="legend">
+          <svg width="300px" height="400px"></svg>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div id="wrapper">
+    
     <div id="myDiv"></div>
     <div class="container.fluid">
         <div class="row"> 
         <div id="bigLinePlot"></div>
-<!--         <div id="myDiv"></div>
- -->        <div id="legend">
-            <svg width="400px" height="500px"></svg>
+        <div id="myDiv"></div>
+        <div id="legend">
+            <svg width="300px" height="400px"></svg>
           </div>
-          <!-- <div id="smallLine">
+<!--         <button type="button" id="downloadDataArray" onclick="downloadData()">Завантажити дані</button>
+ -->          <!-- <div id="the-basics">
                   <input class="typeahead" type="text" placeholder="Назва моделі">
                   <button type="button" id="button">Шукати</button>
           </div> -->
@@ -362,6 +410,7 @@
         <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
       </div>
       </div>
+</div>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
@@ -369,7 +418,8 @@
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/popper.js"></script>
-<script src="https://unpkg.com/tooltip.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/tooltip.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 <script src="js/d3.layout.cloud.js"></script>
