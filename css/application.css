@@ -269,11 +269,18 @@ span.twitter-typeahead {
     left:160px;
 }
 
+#legend svg {
+    overflow: visible;
+}
+
 .legend .rect {
     width: 8px;
     height: 8px;
     display: inline-block;
     padding-left: 10px;
+    fill: none;
+    stroke: #008D9E;
+    stroke-width: 2;
 }
 
 .legend {
@@ -284,6 +291,10 @@ span.twitter-typeahead {
 
 .legend.checked {
     opacity: 1;
+}
+
+.legend.checked rect {
+    fill: #008D9E;
 }
 
 .tooltip {

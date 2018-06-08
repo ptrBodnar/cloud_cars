@@ -225,10 +225,10 @@ function plotting(path) {
 
             var rects = legend.append('rect').attr("class", "rect")
                 .attr("width", 15)
-                .attr("height", 15)
-                .attr("fill", function (d, i) {
-                    return z(d.id);
-                });
+                .attr("height", 15);
+                // .attr("fill", function (d, i) {
+                //     return z(d.id);
+                // });
 
             var text = legend.append('text')
                 .attr("x", 18)
