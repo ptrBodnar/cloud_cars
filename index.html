@@ -4,38 +4,51 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/application.css" type="text/css">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,italic&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-<div class="row">
-  <h3 align="left">Які авто реєструють в Україні?</h3>
-</div>
-<div class="row">
-  <div class="col-sm-7">
-    <div id="bigLinePlot"></div>
-  </div>
-  <div class="col-sm-5">
+
+<div class="container">
     <div class="row">
-    <select id="inds" class="navigation" onchange="change(this.value)">
-            <option value="data/fuel_line_plot.csv" selected="selected">Види пального</option>
-            <option value="data/oblast_name_line_plot.csv">Регіони</option>
-            <option value="data/kind_line_plot.csv">Типи автомобілів</option>
-            <option value="data/make_year_line_plot.csv">Рік виробництва</option>
-            <!-- <option value="data/oblast_name_brand_line_plot_long.csv">Oblast Brand</option> -->
-    </select>  
-    <button id='deleteBigLinePlot' class="navigation">Очистити графік</button> 
+        <div class="col-12">
+            <h3>Які авто реєструють в Україні?</h3>
+        </div>
     </div>
+
     <div class="row">
-      <div id="legend">
-          <svg width="300px" height="400px"></svg>
-      </div>
+        <div class="col-12 col-md-7">
+            <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
+        </div>
+
+        <div class="col-12 col-md-5">
+            <select id="inds" class="navigation" onchange="change(this.value)">
+                <option value="data/fuel_line_plot.csv" selected="selected">Види пального</option>
+                <option value="data/oblast_name_line_plot.csv">Регіони</option>
+                <option value="data/kind_line_plot.csv">Типи автомобілів</option>
+                <option value="data/make_year_line_plot.csv">Рік виробництва</option>
+            </select>
+            <button id='deleteBigLinePlot' class="navigation">Очистити графік</button>
+        </div>
     </div>
-    
-  </div>
+
+    <div class="row">
+        <div class="col-12 col-md-7">
+            <div id="bigLinePlot"></div>
+        </div>
+
+        <div class="col-12 col-md-5">
+            <div id="legend">
+              <svg width="300px" height="400px"></svg>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="wrapper">
-    
     <div id="myDiv"></div>
       <div class="row">
         <div class="col-8">

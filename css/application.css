@@ -49,6 +49,10 @@ body {
     stroke: #f0f8ff;
 }
 
+#bigLinePlot svg {
+    overflow: visible;
+}
+
 #bigLinePlot .fuel_line:hover {
     stroke: #FAA61A;
     stroke-width: 6px;
@@ -265,7 +269,7 @@ span.twitter-typeahead {
     left:160px;
 }
 
-.rect {
+.legend .rect {
     width: 8px;
     height: 8px;
     display: inline-block;
@@ -275,7 +279,11 @@ span.twitter-typeahead {
 .legend {
     font-size: 0.7rem;
     cursor: pointer;
+    opacity: 0.3;
+}
 
+.legend.checked {
+    opacity: 1;
 }
 
 .tooltip {
@@ -300,32 +308,28 @@ span.twitter-typeahead {
 }
 
 .navigation {
-    border-radius: 12px;
+    border-radius: 8px;
     border: 2px solid rgb(0, 141, 158);
     background-color: white;
     color: rgb(0, 141, 158);
-    font-weight: bolder;
+    font-weight: 600;
+    text-transform: uppercase;
 
 }
 
 #inds{
-    position:absolute;
-    top:12px;
-    right:250px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background-image: url('../image/arrow.png');     /* remove default arrow */
     background-repeat: no-repeat;
     background-position-x: 100%;
+    width: 48%;
 }
 
 
 #deleteBigLinePlot {
-    position:absolute;
-    top:12px;
-    right:80px;
-    margin-bottom: 200px;
+    width: 48%;
 }
 
 #wrapper {
@@ -336,6 +340,7 @@ span.twitter-typeahead {
 }
 
 h3 {
-    margin-left: 75px;
     margin-top: 50px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }

@@ -41,18 +41,20 @@ window.change = function (value) {
 
 
 function plotting(path) {
-
     d3.select("#bigLinePlot svg").remove();
 
     var svg = d3.select("#bigLinePlot")
         .append("svg")
-        .attr("width", "800")
-        .attr("height", "460")
+        .attr("width", "100%");
 
+    var container_width = svg.node().getBoundingClientRect().width;
+    var container_height = container_width * 0.75; // співвідношення сторін
 
-    var margin = {top: 20, right: 80, bottom: 30, left: 50},
-        width = svg.attr("width") - margin.left - margin.right,
-        height = svg.attr("height") - margin.top - margin.bottom,
+    svg.attr("height", container_height + 'px');
+
+    var margin = {top: 0, left: 0, right: 0, bottom: 0},
+        width = container_width - margin.left - margin.right,
+        height = container_height - margin.top - margin.bottom,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
@@ -219,8 +221,7 @@ function plotting(path) {
                 .attr("transform", function (d, i) {
                     return "translate(" + Math.floor(i / n) * itemHeight + "," + i % n * itemWidth + ")";
                 })
-                .attr("class", "legend")
-                .style("opacity", 1);
+                .attr("class", "legend checked");
 
             var rects = legend.append('rect').attr("class", "rect")
                 .attr("width", 15)
@@ -236,18 +237,16 @@ function plotting(path) {
                     return d.id;
                 });
 
-            legend.on("click", function (d) {
-                if (this.style.opacity == 1) {
-                    var to_remove = document.getElementById(d.id).id;
-                    remakeLine(to_remove, null);
-                    this.style.opacity = 0.1;
-                }
-                else {
-                    var to_add = d.id;
-                    remakeLine(null, to_add);
-                    this.style.opacity = 1;
-                }
-            })
+            legend.on("click", function(d) {
+                var item = d3.select(this);
+
+                var checked_new = !item.classed("checked");
+                item.classed("checked", checked_new);
+
+                if (checked_new) addLine(d.id);
+                else removeLine(d.id);
+            });
+
 
             legend.on("mouseover", function (d) {
                 d3.selectAll(".fuel_line")._groups[0].forEach(function (d) {
@@ -280,13 +279,10 @@ function plotting(path) {
                 });
 
             d3.select("#deleteBigLinePlot").on("click", function () {
-                remakeLine(null, null);
+                emptyLines();
                 //applying opacity to the legend to mark that the lines were deleted. It will allow to rename them later.
-                var myCollection = document.getElementsByClassName("legend");
-                var i;
-                for (i = 0; i < myCollection.length; i++) {
-                    myCollection[i].style.opacity = 0.5;
-                }
+
+                legend.classed("checked", false);
             });
 
 
@@ -307,24 +303,27 @@ function plotting(path) {
             //   document.getElementById(d.id).style.opacity = 0.5;
             // });
 
-            window.remakeLine = function (to_remove, to_add) {
+            window.removeLine = function(line_id){
+                fuelFiltered = fuelFiltered.filter(function (d) {
+                    return line_id != d;
+                });
+                redrawLines();
+            };
 
+            window.addLine = function(line_id){
+                fuelFiltered.push(line_id);
+                redrawLines();
+            };
 
-                if (to_add == null) {
-                    fuelFiltered = fuelFiltered.filter(function (d) {
-                        return to_remove != d;
-                    })
-                }
-                if (to_remove == null) {
-                    fuelFiltered.push(to_add);
-                }
-                if (to_remove == null & to_add == null) {
-                    emptyArray(fuelFiltered);
-                }
+            window.emptyLines = function() {
+                emptyArray(fuelFiltered);
+                redrawLines();
+            };
 
+            function redrawLines() {
                 carsOnClick = fuel.filter(function (d) {
                     return fuelFiltered.indexOf(d.id.replace(/\s+/g, ' ')) > -1;
-                })
+                });
 
 
                 y.domain([
@@ -382,34 +381,8 @@ function plotting(path) {
                 carsUpd
                     .exit()
                     .remove();
-
-
-                // d3.selectAll(".fuel_line").on("click", function(d) {
-
-                //   //you are changing the global value here on change event.      
-                //   var to_remove = d.id;
-                //   remakeLine(to_remove, null);
-                //   document.getElementById(d.id).style.opacity = 0.5;
-
-                // });
-
-
             }
-
-            // window.emptyLineChart = function() {
-            //   currentCars = [];
-            //   addCar();
-            // }
-
-            // window.deletePreviousLine = function() {
-            //   currentCars.pop();
-            //   addCar();
-            //   console.log(currentCars);
-            // }
-
         });
-
-
 }
 
 
