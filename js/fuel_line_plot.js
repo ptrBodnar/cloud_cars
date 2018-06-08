@@ -175,8 +175,7 @@ function plotting(path) {
           .style("opacity", .5)
           .attr("id", function(d) { return d.id })
           .style("z-index", 0.5)
-          .append("title") 
-            .text(function(d) { return d.id });
+          .append("title");
 
          
          // add legend   
