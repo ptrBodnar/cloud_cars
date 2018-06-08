@@ -278,7 +278,7 @@ span.twitter-typeahead {
     height: 8px;
     display: inline-block;
     padding-left: 10px;
-    fill: none;
+    fill: white;
     stroke: #008D9E;
     stroke-width: 2;
 }

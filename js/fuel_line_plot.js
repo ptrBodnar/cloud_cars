@@ -1,3 +1,28 @@
+//
+// D3 locale change
+//
+d3.timeFormatDefaultLocale({
+    "decimal": ".",
+    "thousands": " ",
+    "grouping": [3],
+    "currency": ["грн", ""],
+    "dateTime": "%a %b %e %X %Y",
+    "date": "%d.%m.%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    "shortDays": ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    "shortMonths": ["січ", "лют", "бер", "кві", "тра", "чер", "лип", "сер", "вер", "жов", "лис", "гру"]
+});
+//
+var formatMonth = d3.timeFormat("%b");
+var formatYear = d3.timeFormat("%Y");
+
+function multiFormat(date) {
+    return (d3.timeYear(date) < date ? formatMonth : formatYear)(date);
+}
+
 var sect = document.getElementById("inds");
 var path = sect.options[sect.selectedIndex].value;
 
@@ -146,7 +171,7 @@ function plotting(path) {
             g.append("g")
                 .attr("class", "axis x")
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(x).tickFormat(multiFormat));
 
             //Шкала У    
             g.append("g")
@@ -340,7 +365,7 @@ function plotting(path) {
                 }));
 
                 svg.select(".axis.x")
-                    .call(d3.axisBottom(x));
+                    .call(d3.axisBottom(x).tickFormat(multiFormat));
 
                 //Update Y axis
                 svg.select(".axis.y")
