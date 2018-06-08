@@ -1,4 +1,5 @@
-    function buildCloudPlot(grouped_cars) {
+
+function buildCloudPlot(grouped_cars) {
 
       d3.select("#cloudPlot svg")
       .transition()
@@ -57,11 +58,15 @@
    }
 
     window.updateChart = function(name) {
-      d3.select("#cloudPlot svg")
-      .transition()
-      .duration(1000)
-      .style("opacity", 0)
-      .remove();
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        d3.select("#cloudPlot svg")
+            .transition()
+            .duration(1000)
+            .style("opacity", 0)
+            .remove();
 
 
       var newCars;

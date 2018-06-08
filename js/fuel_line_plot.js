@@ -26,7 +26,8 @@ function multiFormat(date) {
 var sect = document.getElementById("inds");
 var path = sect.options[sect.selectedIndex].value;
 
-var carsOnClick = 0;
+var fuel;  // Повні дані із csv
+var carsOnClick; // Поточні дані на момент промальовки
 
 
 window.namesOfFuel = [];
@@ -66,6 +67,10 @@ window.change = function (value) {
 
 
 function plotting(path) {
+    var div = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     d3.select("#bigLinePlot svg").remove();
 
     var svg = d3.select("#bigLinePlot")
@@ -93,15 +98,13 @@ function plotting(path) {
     else
 
         d3.csv(path, type, function (error, data) {
+            if (error) throw error;
 
             emptyArray(namesOfFuel);
 
             data.columns.slice(1).map(function (id) {
                 namesOfFuel.push(id)
             });
-
-
-            if (error) throw error;
 
             fuel = data.columns.slice(1).map(function (id) {
                 return {
@@ -112,29 +115,36 @@ function plotting(path) {
                 };
             });
 
-            window.downloadData = function (d) {
-                if (carsOnClick == 0) {
-                    var csvContent = fuel; //here we load our csv data 
-                    var blob = new Blob([csvContent], {
-                        type: "text/csv;charset=utf-8;"
-                    });
+            carsOnClick = fuel; // При першій промальовці малюємо всі дані
 
-                    navigator.msSaveBlob(blob, "data.csv")
-                }
-                else {
-                    var csvContent = carsOnClick; //here we load our csv data 
-                    var blob = new Blob([csvContent], {
-                        type: "text/csv;charset=utf-8;"
-                    });
+            window.downloadData = function () {
+                var exportData = [];
 
-                    navigator.msSaveBlob(blob, "data.csv")
-                }
+                carsOnClick.forEach(function(row) {
+                    row.values.forEach(function(value) {
+                        exportData.push({id: row.id, date: value.date, number: value.number})
+                    });
+                });
+
+                var csvContent = "data:text/csv;charset=utf-8," +
+                    "id,date,number\n" +
+                    exportData.map(function(obj){
+                        return [obj.id, obj.date, obj.number].join(",");
+                    }).join("\n");
+
+                var encodedUri = encodeURI(csvContent);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "data.csv");
+                link.innerHTML= "Click Here to download";
+                document.body.appendChild(link); // Required for FF
+                link.style.visibility = 'hidden';
+                link.click();
             };
-
 
             //Тут я створив змінну яка контролюватиме кількість елементів на графіку, відніматиме і додаватиме
             var fuelFiltered = [];
-            fuel.forEach(function (d) {
+            carsOnClick.forEach(function (d) {
                 fuelFiltered.push(d.id);
             });
 
@@ -149,12 +159,12 @@ function plotting(path) {
             var y = d3.scaleLinear()
                 .range([height, 0])
                 .domain([
-                    d3.min(fuel, function (c) {
+                    d3.min(carsOnClick, function (c) {
                         return d3.min(c.values, function (d) {
                             return d.number;
                         });
                     }),
-                    d3.max(fuel, function (c) {
+                    d3.max(carsOnClick, function (c) {
                         return d3.max(c.values, function (d) {
                             return d.number;
                         });
@@ -163,7 +173,7 @@ function plotting(path) {
 
 
             //Шкала кольорів
-            var z = d3.scaleOrdinal(["#008D9E"]).domain(fuel.map(function (c) {
+            var z = d3.scaleOrdinal(["#008D9E"]).domain(carsOnClick.map(function (c) {
                 return c.id;
             }));
 
@@ -195,7 +205,7 @@ function plotting(path) {
 
             //Створити лінії
             var car = g.selectAll(".car")
-                .data(fuel, function (d) {
+                .data(carsOnClick, function (d) {
                     return d.id
                 })
                 .enter()
@@ -227,7 +237,7 @@ function plotting(path) {
             // var ordinal = d3.scaleOrdinal()
             //   .domain(fuel.map(function(d) {return d.id;}).sort())
             //   .range(d3.schemePaired);
-            var n = fuel.map(function (d) {
+            var n = carsOnClick.map(function (d) {
                     return d.id;
                 }).length / 1.5;
             var itemWidth = 25;
@@ -240,7 +250,7 @@ function plotting(path) {
             button = document.createElement("button");
 
             var legend = svgLegend.selectAll(".legend")
-                .data(fuel)
+                .data(carsOnClick)
                 .enter()
                 .append("g")
                 .attr("transform", function (d, i) {
@@ -294,8 +304,7 @@ function plotting(path) {
                 div.html(d.id)
                     .style("left", (d3.event.pageX + 30) + "px")
                     .style("top", (d3.event.pageY - 28) + "px")
-                    .style("background-color", "grey")
-                    .style("color", "white");
+
             })
                 .on("mouseout", function (d) {
                     div.transition()
@@ -309,24 +318,6 @@ function plotting(path) {
 
                 legend.classed("checked", false);
             });
-
-
-            // d3.select("#button").on("click", function(d) {
-
-            //   //you are changing the global value here on change event.      
-            //   var to_add = document.querySelectorAll("#the-basics input")[1].value;
-
-            //   document.querySelectorAll("#the-basics input")[1].value = "";
-            //   remakeLine(null,to_add);
-            // });
-
-            // d3.selectAll(".fuel_line").on("click", function(d) {
-
-            //   //you are changing the global value here on change event.      
-            //   var to_remove = d.id;
-            //   remakeLine(to_remove, null);
-            //   document.getElementById(d.id).style.opacity = 0.5;
-            // });
 
             window.removeLine = function(line_id){
                 fuelFiltered = fuelFiltered.filter(function (d) {
@@ -349,7 +340,6 @@ function plotting(path) {
                 carsOnClick = fuel.filter(function (d) {
                     return fuelFiltered.indexOf(d.id.replace(/\s+/g, ' ')) > -1;
                 });
-
 
                 y.domain([
                     0,
@@ -427,7 +417,7 @@ function substringMatcher(strs) {
         matches = [];
 
         // regex used to determine if a string contains the substring `q`
-        substrRegex = new RegExp(q, 'i');
+        var substrRegex = new RegExp(q, 'i');
 
         // iterate through the pool of strings and for any string that
         // contains the substring `q`, add it to the `matches` array

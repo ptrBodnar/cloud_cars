@@ -299,6 +299,11 @@ span.twitter-typeahead {
 }
 
 .tooltip {
+    color: white;
+    background-color: #008D9E;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 2px;
 }
 
 .tooltip-item {
@@ -360,6 +365,7 @@ span.twitter-typeahead {
 
 #exportButton {
     color: transparent;
+    padding: 2px;
     background-image: url('../image/export_button.svg');
     background-repeat: no-repeat;
     background-position-x: 50%;

@@ -1,16 +1,9 @@
-var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
 var fill = d3.scaleOrdinal(d3.schemeCategory10); 
 
 width = 850;
 height = 550;
 
-
-
  d3.csv("data/colors_cloud_plot.csv", function(data) {
-
 
     grouped_cars = d3.nest()
             //.key(function(d) { return d.oblast_name; })
