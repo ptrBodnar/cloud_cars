@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-12 col-md-7">
-            <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
+            <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні.</p>
         </div>
 
         <div class="col-12 col-md-5">
@@ -50,27 +50,29 @@
     </div>
 </div>
 
-<div id="wrapper">
-    <div id="myDiv"></div>
-      <div class="row">
-        <div class="col-8">
-          <div class="form-inline">
-            <button onclick="returnProducers()">Повернутися</button> 
-            <div id="carProducerReturnTag"></div>
-        </div>
-          <div id="cloudPlot"></div>
-        </div>
-      <div class="col-4"> 
-        <button onclick="emptyLineChart()">Очистити графік</button>
-        <div id="smallLine">
-                <input class="typeahead" type="text" placeholder="Назва моделі">
-                <button type="button" id="buttonSmall">Шукати</button>
-        </div>
-        <div id="linePlot"></div>
-        <p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>
-      </div>
-      </div>
-</div>
+
+<!-- ТИМЧАСОВО ВИМИКАЄМО ЦІ ГРАФІКИ -->
+<!--<div id="wrapper">-->
+    <!--<div id="myDiv"></div>-->
+      <!--<div class="row">-->
+        <!--<div class="col-8">-->
+          <!--<div class="form-inline">-->
+            <!--<button onclick="returnProducers()">Повернутися</button> -->
+            <!--<div id="carProducerReturnTag"></div>-->
+        <!--</div>-->
+          <!--<div id="cloudPlot"></div>-->
+        <!--</div>-->
+      <!--<div class="col-4"> -->
+        <!--<button onclick="emptyLineChart()">Очистити графік</button>-->
+        <!--<div id="smallLine">-->
+                <!--<input class="typeahead" type="text" placeholder="Назва моделі">-->
+                <!--<button type="button" id="buttonSmall">Шукати</button>-->
+        <!--</div>-->
+        <!--<div id="linePlot"></div>-->
+        <!--<p>Усі легально куплені автомобілі реєструють у Сервісному центрі МВС. Завдяки публікації відкритих даних МВС, ми можемо дізнатися те які автомобілі купують в Україні. За допомогою цього інструменту ви можете самостійно перевіряти кількість зареєстрованих (а значить і проданих) автомобілів за кожною маркою та моделлю.</p>-->
+      <!--</div>-->
+      <!--</div>-->
+<!--</div>-->
 
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -88,12 +90,14 @@
 <script src="js/lodash.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script src="js/d3.layout.cloud.js"></script>
-<script src="js/general.js"></script>
-<script src="js/cloud_plot.js"></script>
-<script src="js/line_plot.js"></script>
-<script src="js/brand_model_plot.js"></script>
 <script src="js/fuel_line_plot.js"></script>
+
+<!-- ТИМЧАСОВО ВИМИКАЄМО ЦІ ГРАФІКИ -->
+<!--<script src="js/d3.layout.cloud.js"></script>-->
+<!--<script src="js/general.js"></script>-->
+<!--<script src="js/cloud_plot.js"></script>-->
+<!--<script src="js/line_plot.js"></script>-->
+<!--<script src="js/brand_model_plot.js"></script>-->
 
 </body>
 </html>
