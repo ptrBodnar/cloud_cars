@@ -106,7 +106,7 @@ window.changeOblastBrand = function(value) {
             }
             
 
-            fuel = fuel.find(x => x.key == oblast_name).values
+            fuel = fuel.find(function(x) {return x.key == oblast_name}).values
             emptyArray(namesOfFuel);
 
 
@@ -151,7 +151,7 @@ window.changeOblastBrand = function(value) {
                 //     })
                 // })
 
-                var c = allMonth.filter(x => !b.includes(x));
+                var c = allMonth.filter(function(x){return !b.includes(x)});
                 c.forEach(function(dd) {arr.push({date:dd, size:0})})
                 arr.sort(function(a,b) {return d3.ascending(a.date, b.date)});
             }; 

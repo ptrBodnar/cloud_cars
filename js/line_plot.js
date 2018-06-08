@@ -94,8 +94,6 @@ d3.csv("data/data_wide_line_plot.csv", type, function(error, data) {
 
 
     d3.select("#buttonSmall").on("click", function(d) {
-      debugger;
-
       //you are changing the global value here on change event.      
       var name = document.querySelectorAll("#smallLine input")[1].value.replace(/\s+/g,' ').trim().toUpperCase();
 
