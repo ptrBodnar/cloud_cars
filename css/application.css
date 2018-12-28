@@ -390,3 +390,27 @@ h3 {
     text-transform: uppercase;
     font-size: 2em;
 }
+
+
+#smallMultiples {
+  font: 10px sans-serif;
+  margin: 0;
+  text-anchor: end;
+  padding-top: 15px;
+}
+
+#smallMultiples .line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#smallMultiples .area {
+  fill: #e7e7e7;
+  z-index: 0.5;
+}
+
+#smallMultiples text {
+    background-color: red;
+    z-index: 1;
+}
